@@ -3,19 +3,19 @@ package org.starta.clientapp.com.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.starta.clientapp.com.model.Clients;
-import org.starta.clientapp.com.repository.ClientRepository;
+import org.starta.clientapp.com.repository.ClientsRepository;
 
 import java.util.List;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientsServiceImpl implements ClientsService {
 
     @Autowired
-    private ClientRepository repository;
+    private ClientsRepository repository;
 
     @Override
     public Clients createClient(Clients client) {
-        return repository.create(client);
+        return repository.createClient(client);
     }
 
     @Override

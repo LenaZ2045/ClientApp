@@ -4,9 +4,9 @@ import org.starta.clientapp.com.model.Clients;
 
 import java.util.List;
 
-public interface ClientRepository {
+public interface ClientsRepository {
 
-    Clients create(Clients client);
+    Clients createClient(Clients client);
 
     List<Clients> getAllClients();
 

@@ -1,37 +1,39 @@
 package org.starta.clientapp.com.repository;
 
-import com.github.javafaker.Faker;
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import org.starta.clientapp.com.model.Clients;
 
 import java.util.*;
 
+@Getter
 @Repository
-public class ClientRepositoryImpl implements ClientRepository {
+public class ClientsRepositoryImpl implements ClientsRepository {
 
-    private Map<String, Clients> clientsMap = new HashMap<>();
+    private final Map<String, Clients> clientsMap = new HashMap<>();
 
     @PostConstruct
-    private void inti() {
+    private void init() {
         Clients clientOne = new Clients(UUID.randomUUID().toString(),
-                Faker.instance().name().fullName(),
+                "Melik Igor",
                 "clientOne@yahoo.com",
-                Faker.instance().phoneNumber()
+                "904-115-1239"
         );
         Clients clientTwo = new Clients(UUID.randomUUID().toString(),
-                Faker.instance().name().fullName(),
+                "Moller Brian",
                 "clientTwo@comcast.net",
-                Faker.instance().phoneNumber()
+                "904-219-3748"
         );
         clientsMap.put(UUID.randomUUID().toString(), clientOne);
         clientsMap.put(UUID.randomUUID().toString(), clientTwo);
     }
     @Override
-    public Clients create(Clients client) {
-        Clients clientThree = new Clients(client.getName().toString(), client.getEmail(), client.getPhone());
-        clientThree.setId(UUID.randomUUID().toString());
-        return clientThree;
+    public Clients createClient(Clients client) {
+        Clients addNewClient = new Clients(client.getName(), client.getEmail(), client.getPhone());
+        addNewClient.setId(UUID.randomUUID().toString());
+        clientsMap.put(addNewClient.getId(), addNewClient);
+        return addNewClient;
     }
 
     @Override
